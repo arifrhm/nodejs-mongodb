@@ -1,5 +1,5 @@
 # Use an official Node.js runtime as a parent image
-FROM node:14-alpine
+FROM node:18-alpine
 
 RUN apk update &&\ 
     apk add --no-cache\
@@ -13,7 +13,7 @@ ENV PYTHON_CONFIGURE_OPTS="--enable-shared"
 WORKDIR /app
 
 # Copy the package.json and package-lock.json files to the container
-COPY package*.json ./
+COPY package*.json ./ 
 
 # Install dependencies
 RUN npm install

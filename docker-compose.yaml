@@ -5,8 +5,10 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - DB_URI=mongodb://mongo:27017
-      - DB_NAME=mydb
+      - DB_URI=mongodb://root:example@hostname:27017
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=example
+      - MONGO_INITDB_DATABASE=mydb
   mongo:
     image: mongo
     ports:

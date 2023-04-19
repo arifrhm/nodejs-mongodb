@@ -1,6 +1,6 @@
 const express = require('express');
 const mongodb = require('mongodb');
-const connect = require('./db');
+const {connect} = require('./db');
 
 const router = express.Router();
 
