@@ -1,19 +1,20 @@
-const { MongoClient } = require('mongodb');
+const mongoose = require('mongoose');
 
-const uri = 'mongodb://127.0.0.1:27017';
+const uri = 'mongodb://127.0.0.1:27017?retryWrites=true&w=majority';
 const dbName = 'myapp';
-
-const client = new MongoClient(`${uri}/${dbName}`, { useNewUrlParser: true, useUnifiedTopology: true });
 
 async function connect() {
     try {
-        await client.connect();
-        console.log('Connected to MongoDB');
-        return client.db(dbName);
-    } catch (err) {
-        console.error('Failed to connect to MongoDB', err);
-        process.exit(1);
-    }
+        const conn = await mongoose.connect(`${uri}/${dbName}`, {
+          useUnifiedTopology: true,
+          useNewUrlParser: true,
+        })
+    
+        console.log(`MongoDB Connected: ${conn.connection.host}`)
+      } catch (error) {
+        console.error(`Error: ${error.message}`)
+        process.exit(1)
+      }
 }
 
 module.exports = {

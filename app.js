@@ -1,6 +1,9 @@
 const express = require('express');
 const apiV1 = require('./api_v1');
 const apiV2 = require('./api_v2');
+const {connect} = require('./db');
+
+connect();
 
 const app = express();
 app.use(express.json());

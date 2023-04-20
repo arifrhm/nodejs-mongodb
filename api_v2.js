@@ -1,14 +1,13 @@
 const express = require('express');
 const User = require('./user');
-const connect = require('./db');
 
 const router = express.Router();
 
 // Create a new user
 router.post('/users', async (req, res) => {
     try {
-        const { username, password } = req.body;
-        const user = new User({ username, password });
+        const { name, email, password, isAdmin } = req.body;
+        const user = new User({ name, email, password, isAdmin});
         await user.save();
         res.status(201).json(user);
     } catch (err) {
